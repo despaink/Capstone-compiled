@@ -1,0 +1,50 @@
+SQL Queries
+
+- unique
+    - by day
+		SELECT COUNT(DISTINCT mac)
+		FROM test_timestamp
+		WHERE DATE(first_seen)=DATE(‘${date}’)
+            - date is determined by the lambda
+            - date should be in format ‘yyyy-mm-dd’
+            - Change to SELECT * to get the whole table on a specific day
+    - by week
+		SELECT COUNT(DISTINCT mac)
+		FROM test_timestamp
+		WHERE extract(week FROM first_seen)=extract(week FROM DATE('2020-1-14'))
+    - by month
+		SELECT COUNT(DISTINCT mac)
+		FROM test_timestamp
+		WHERE extract(month FROM first_seen)=extract(month FROM DATE('2020-1-14'))
+- repeat
+    - by day
+		SELECT mac, COUNT(*) visits 
+		FROM test_timestamp
+		WHERE DATE(first_seen)=DATE('2019-12-12')
+		GROUP BY mac
+		HAVING COUNT(*) > 1
+		ORDER BY COUNT(*) DESC
+        - This lists all of the mac address with repeat instances and the number of repeat instances
+    - by week
+		SELECT mac, COUNT(*) visits 
+		FROM test_timestamp
+		WHERE extract(week FROM first_seen)=extract(week FROM DATE('2020-1-14'))
+		GROUP BY mac
+		HAVING COUNT(*) > 1
+		ORDER BY COUNT(*) DESC
+    - by month
+		SELECT mac, COUNT(*) visits 
+		FROM test_timestamp
+		WHERE extract(month FROM first_seen)=extract(month FROM DATE('2020-1-14'))
+		GROUP BY mac
+		HAVING COUNT(*) > 1
+		ORDER BY COUNT(*) DESC
+- total people in store per hour
+		SELECT date_trunc('hour', first_seen) time, Count(*) visits
+		FROM test_timestamp
+		GROUP BY date_trunc('hour', first_seen)
+		ORDER BY date_trunc('hour', first_seen)
+- duration of visit
+    select mac, date_diff('minute', first_seen, last_seen) minutes
+    from test_timestamp
+    order by date_diff('minute', first_seen, last_seen) desc
