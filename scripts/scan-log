@@ -1,0 +1,6 @@
+#!/bin/bash
+# Scan MAC addresses, dump into CSV file
+
+sudo rm /root/logs/log*
+sleep 3
+sudo /usr/sbin/airodump-ng -b abg -u 3 -w /root/logs/log --output-format csv wlan0mon &

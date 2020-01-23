@@ -1,0 +1,5 @@
+#!/bin/bash
+# Scan MAC addresses - USED FOR TESTING
+
+monstart
+airodump-ng -b abg wlan0mon

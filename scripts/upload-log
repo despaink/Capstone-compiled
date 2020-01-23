@@ -1,0 +1,11 @@
+#!/bin/bash
+# Upload csv file every 30 minutes
+source /root/scripts/env.sh
+
+while [ 1 ]
+do
+	sleep 10
+	sudo cp /root/logs/log-01.csv /root/logs/log-send.csv
+	python /root/code/upload_file.py /root/logs/log-send.csv
+	sleep 1790
+done

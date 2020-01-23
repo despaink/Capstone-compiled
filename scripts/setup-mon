@@ -1,0 +1,7 @@
+#!/bin/bash
+# Creates wlan0mon interface for monitor mode
+
+echo "Bring up monitor mode interface wlan0mon"
+sudo iw phy phy0 interface add wlan0mon type monitor
+ifconfig wlan0mon up
+
