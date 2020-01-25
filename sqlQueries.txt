@@ -1,5 +1,17 @@
 SQL Queries
 
+---------------------------------------------------
+Records every 10 minutes
+
+select created interval, count(*) count
+from
+(
+  select substr(to_char(first_seen, 'hh24:mi'), 1, 4) || '0' created
+  from test_timestamp
+)
+group by created
+order by created;
+---------------------------------------------------
 - unique
     - by day
 		SELECT COUNT(DISTINCT mac)
@@ -48,3 +60,6 @@ SQL Queries
     select mac, date_diff('minute', first_seen, last_seen) minutes
     from test_timestamp
     order by date_diff('minute', first_seen, last_seen) desc
+    
+    
+  
