@@ -34,9 +34,9 @@ def main():
 	S3 = boto3.client('s3')
 
 	if "BUCKET_NAME" not in os.environ:
-		print("Error: BUCKET_NAME not defined")
+		print("Error: BUCKET_NAME not defined. Try running configuration script (/root/scripts/config.sh)")
 		return
-	BUCKET_NAME = os.environ.get("BUCKET_NAME") 
+	BUCKET_NAME = os.environ.get("BUCKET_NAME")
 
 	# Clean the log csv file
 	time = datetime.now()
@@ -52,11 +52,11 @@ def main():
 
 	# Directory in S3 bucket
 	if "STORE_NAME" not in os.environ:
-		print("Error: STORE_NAME not defined")
+		print("Error: STORE_NAME not defined. Try running configuration script (/root/scripts/config.sh)")
 		return
-	DEST_FILENAME = os.environ.get("STORE_NAME") + "/log_" + write_time + ".csv" 
+	DEST_FILENAME = "store-logs/" + os.environ.get("STORE_NAME") + "/log_" + write_time + ".csv"
 
-	# Uploads the file
+	# Uploads the given file and sets it to public so other services can read it
 	S3.upload_file(SOURCE_FILENAME, BUCKET_NAME, DEST_FILENAME, ExtraArgs={'ACL': 'public-read'})
 
 
