@@ -1,11 +1,12 @@
 #!/bin/bash
-# Upload csv file every 30 minutes
+# Upload csv file to S3 bucket every 30 minutes
+# Creates copy "log-send.csv" to avoid log file changing during upload
+
 source /root/scripts/env.sh
 
 while [ 1 ]
 do
-	sleep 10
+	sleep 1800
 	sudo cp /root/logs/log-01.csv /root/logs/log-send.csv
 	python /root/code/upload_file.py /root/logs/log-send.csv
-	sleep 1790
 done

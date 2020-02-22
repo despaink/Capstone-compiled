@@ -1,0 +1,6 @@
+#!/bin/bash
+# Sends an email to yourself using the credentials in env.sh containing the Pi's IP address
+
+source /root/scripts/env.sh
+
+python /root/code/ip_script.py

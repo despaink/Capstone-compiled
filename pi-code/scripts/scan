@@ -1,5 +1,5 @@
 #!/bin/bash
-# Scan MAC addresses - USED FOR TESTING
+# Scan MAC addresses in the foreground - mainly used for testing
 
 monstart
 airodump-ng -b abg wlan0mon
