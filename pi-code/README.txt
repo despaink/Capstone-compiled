@@ -37,13 +37,12 @@
 6. Uncomment the cron jobs at the bottom you wish to use, then save and quit. For example, one will look like this:
 
    # Scan MAC addresses nearby and upload the log file every 30 minutes
-   # @reboot sleep 120 ; /root/scripts/setup-mon ; sleep 5 ; /root/scripts/scan-log; sleep 5 ; /root/scripts/upload-log
+   # @reboot sleep 120 ; /root/scripts/setup-mon ; sleep 5 ; /root/scripts/scan-log
 
    and end up looking like this:
 
    # Scan MAC addresses nearby and upload the log file every 30 minutes
-   @reboot sleep 120 ; /root/scripts/setup-mon ; sleep 5 ; /root/scripts/scan-log; sleep 5 ; /root/scripts/upload-log
-
+   @reboot sleep 120 ; /root/scripts/setup-mon ; sleep 5 ; /root/scripts/scan-log
 
 
 7. Refresh your cron jobs by running the following command:
